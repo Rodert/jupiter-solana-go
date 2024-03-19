@@ -7,18 +7,23 @@ import (
 	"github.com/Rodert/jupiter-go/jupiter"
 	"github.com/Rodert/jupiter-go/solana"
 	"log"
+	"time"
 )
 
 // go run main.go -userPublicKey userPublicKey -walletPrivateKey walletPrivateKey -input So11111111111111111111111111111111111111112 -output EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v -amount 10000 -slip 250
 func main() {
+	start := time.Now()
+	fmt.Printf("\nusage: %v\n\n", "./solana-letgo-mac -userPublicKey userPublicKey -walletPrivateKey walletPrivateKey -input So11111111111111111111111111111111111111112 -output EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v -amount 10000 -slip 250")
 	ctx := context.TODO()
 	// 定义一个命令行参数
-	userPublicKey := flag.String("userPublicKey", "your userPublicKey", "userPublicKey")
-	walletPrivateKey := flag.String("walletPrivateKey", "your walletPrivateKey", "walletPrivateKey")
-	input := flag.String("input", "So11111111111111111111111111111111111111112", "输入代币地址，default solana")
-	output := flag.String("output", "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "输出代币地址，default USDC")
-	amount := flag.Int("amount", 10000, "amount 兑换额度，兑换代笔的最小单位")
-	slip := flag.Int("slip", 250, "slip 滑点, 兑换代笔的最小单位")
+	userPublicKey := flag.String("userPublicKey", "your userPublicKey", "userPublicKey 钱包公钥")
+	walletPrivateKey := flag.String("walletPrivateKey", "your walletPrivateKey", "walletPrivateKey 钱包私钥")
+	input := flag.String("input", "So11111111111111111111111111111111111111112", "input 输入代币地址，default solana")
+	output := flag.String("output", "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "output 输出代币地址，default USDC")
+	amount := flag.Int("amount", 10000, "amount 兑换额度，兑换代币的最小单位")
+	slip := flag.Int("slip", 250, "slip 滑点, 兑换代币的最小单位")
+
+	flag.PrintDefaults()
 	// 解析命令行参数
 	flag.Parse()
 
@@ -38,15 +43,21 @@ func main() {
 	if err != nil {
 		// handle me
 	}
-
 	swap := GetSwapJson(*input, *output, *userPublicKey, *amount, *slip)
-
+	fmt.Printf("交易路径： %+v\n", swap)
 	signedTx, err := RunSwap(ctx, solanaClient, swap)
 	if err != nil {
-		fmt.Printf("err: %v", err)
+		fmt.Printf("%v\n", err)
 	}
-	fmt.Println(signedTx)
+	fmt.Printf("交易哈希： %v\n", signedTx)
 
+	GetStatus(ctx, solanaClient, signedTx)
+	end := time.Now()
+	elapsed := end.Sub(start)
+	log.Printf("执行耗时: %s\n", elapsed)
+}
+
+func GetStatus(ctx context.Context, solanaClient solana.Client, signedTx solana.TxID) {
 	for {
 		// wait a bit to let the transaction propagate to the network
 		// this is just an example and not a best practice
@@ -57,20 +68,15 @@ func main() {
 		// until the transaction is confirmed)
 		var confirmed bool
 		var err2 error
-		//for {
-		//defer func() {
-		//	if r := recover(); r != nil {
-		//		log.Printf("Recovered from panic: %v", r)
-		//		// 程序不会退出，可以继续执行其他代码
-		//	}
-		//}()
 		confirmed, err2 = solanaClient.CheckSignature(ctx, signedTx)
 		if err2 != nil {
 			//panic(err)
-			fmt.Printf("err2: %+v", err2)
+			fmt.Printf("pinding： %+v\n", err2)
+		} else {
+			fmt.Printf("是否完成: %+v\n", confirmed)
+			return
 		}
-		//}
-		fmt.Printf("confirmed: %+v\n", confirmed)
+		time.Sleep(2 * time.Second)
 	}
 }
 
@@ -134,6 +140,6 @@ func GetSwapJson(input, output, userPublicKey string, amount, slip int) *jupiter
 	}
 
 	swap := swapResponse.JSON200
-	fmt.Printf("%+v", swap)
+	//fmt.Printf("%+v", swap)
 	return swap
 }

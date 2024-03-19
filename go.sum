@@ -36,8 +36,7 @@ github.com/GeertJohan/go.incremental v1.0.0/go.mod h1:6fAjUhbVuX1KcMD3c8TEgVUqmo
 github.com/GeertJohan/go.rice v1.0.0/go.mod h1:eH6gbSOAUv07dQuZVnBmoDP8mgsM1rtixis4Tib9if0=
 github.com/OneOfOne/xxhash v1.2.2/go.mod h1:HSdplMjZKSmBqAxg5vPj2TmRDmfkzw+cTzAElWljhcU=
 github.com/RaveNoX/go-jsoncommentstrip v1.0.0/go.mod h1:78ihd09MekBnJnxpICcwzCMzGrKSKYe4AqU6PDYYpjk=
-github.com/Rodert/jupiter-go v0.0.5 h1:IPw9t01o79llTnkKbdAxxSbPhm5NeMEGKhPC9Ug9Xls=
-github.com/Rodert/jupiter-go v0.0.5/go.mod h1:Cs68+HeX5XAujlqF5rXqUl0bUTpfWx1s+FWyZhzZn3M=
+github.com/Rodert/jupiter-go v0.0.6 h1:jsgVeNu5ZW8Vmz687qoiBqmsn9re3klRHV6H87HmL1s=
 github.com/Rodert/jupiter-go v0.0.6/go.mod h1:Cs68+HeX5XAujlqF5rXqUl0bUTpfWx1s+FWyZhzZn3M=
 github.com/akavel/rsrc v0.8.0/go.mod h1:uLoCtb9J+EyAqh+26kdrTgmzRBFPGOolLWKpdxkKq+c=
 github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc/go.mod h1:LOuyumcjzFXgccqObfd/Ljyb9UuFJ6TxHnclSeseNhc=
@@ -179,8 +178,6 @@ github.com/hashicorp/memberlist v0.1.3/go.mod h1:ajVTdAv/9Im8oMAAj5G31PhhMCZJV2p
 github.com/hashicorp/serf v0.8.2/go.mod h1:6hOLApaqBFA1NXqRQAsxw9QxuDEvNxSQRwA/JwenrHc=
 github.com/hpcloud/tail v1.0.0/go.mod h1:ab1qPbhIpdTxEkNHXyeSf5vhxWSCs/tWer42PpOxQnU=
 github.com/ianlancetaylor/demangle v0.0.0-20181102032728-5e5cf60278f6/go.mod h1:aSSvb/t6k1mPoxDqO4vJh6VOCGPwU4O0C2/Eqndh1Sc=
-github.com/ilkamo/jupiter-go v0.0.5 h1:YGxKvAfjTQbVz1mD83tc7kyHzuFIQDt6GsFiHScXct8=
-github.com/ilkamo/jupiter-go v0.0.5/go.mod h1:ocIddd14hMfjdlcJqO3eawEWGwOaLVpWdexHGjfFCVM=
 github.com/inconshreveable/mousetrap v1.0.0/go.mod h1:PxqpIevigyE2G7u3NXJIT2ANytuPF1OarO4DADm73n8=
 github.com/jessevdk/go-flags v1.4.0/go.mod h1:4FA24M0QyGHXBuZZK/XkWh8h0e1EYbRYJSGM75WSRxI=
 github.com/jmespath/go-jmespath v0.0.0-20180206201540-c2b33e8439af/go.mod h1:Nht3zPeWKUH0NzdCt2Blrr5ys8VGpn0CEB0cQHVjt7k=
