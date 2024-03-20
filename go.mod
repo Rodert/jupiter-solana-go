@@ -2,7 +2,10 @@ module jupiter-solana-go
 
 go 1.19
 
-require github.com/Rodert/jupiter-go v0.0.6
+require (
+	github.com/Rodert/jupiter-go v0.0.6
+	github.com/shopspring/decimal v1.3.1
+)
 
 require (
 	contrib.go.opencensus.io/exporter/stackdriver v0.13.4 // indirect
